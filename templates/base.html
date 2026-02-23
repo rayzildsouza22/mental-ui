@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Mental UI{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+</head>
+<body>
+
+<div class="phone">
+    <div class="screen">
+
+        {% if user.is_authenticated %}
+            <div style="text-align:center; font-size:12px; color:gray; padding-top:5px;">
+                Logged in as {{ user.username }}
+            </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+
+        <div class="bottom-nav">
+
+            <a href="{% url 'home' %}" 
+               class="nav-item {% if request.path == '/' %}active{% endif %}">
+                🏠
+            </a>
+
+            <a href="{% url 'chat' %}" 
+               class="nav-item {% if request.path == '/chat/' %}active{% endif %}">
+                💬
+            </a>
+
+            <div class="nav-item">🟣</div>
+
+            <a href="{% url 'schedule' %}" 
+               class="nav-item {% if request.path == '/schedule/' %}active{% endif %}">
+                📅
+            </a>
+
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit"
+                            style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">
+                        🚪
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="nav-item">
+                    👤
+                </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

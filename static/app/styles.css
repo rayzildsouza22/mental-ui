@@ -1,0 +1,306 @@
+/* ============================= */
+/* Base Layout */
+/* ============================= */
+
+body {
+    margin: 0;
+    background: #f3f3f3;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.phone {
+    width: 360px;
+    height: 740px;
+    background: black;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.screen {
+    background: white;
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.greeting {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: gray;
+}
+
+/* ============================= */
+/* Bottom Nav */
+/* ============================= */
+
+.bottom-nav {
+    height: 70px;
+    background: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.nav-item {
+    color: white;
+    font-size: 20px;
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+.nav-item.active {
+    opacity: 1;
+}
+
+/* ============================= */
+/* Mood Meter */
+/* ============================= */
+
+.mood-card {
+    background: linear-gradient(180deg, #ffd2c5, #ffbfae);
+    padding: 30px 20px;
+    border-radius: 24px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.mood-title {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.mood-meter {
+    position: relative;
+    width: 260px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+.mood-arc {
+    width: 260px;
+    height: 130px;
+    border-top-left-radius: 260px;
+    border-top-right-radius: 260px;
+    background: linear-gradient(
+        90deg,
+        #ff6b6b 0%,
+        #ffa94d 40%,
+        #ffd43b 70%,
+        #69db7c 100%
+    );
+}
+
+.mood-emoji {
+    position: absolute;
+    font-size: 22px;
+    border: none;
+    background: white;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mood-emoji.angry { left: -10px; bottom: -10px; }
+.mood-emoji.sad { left: 60px; top: 15px; }
+.mood-emoji.calm { right: 60px; top: 15px; }
+.mood-emoji.happy { right: -10px; bottom: -10px; }
+
+.mood-emoji.active {
+    transform: scale(1.2);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* ============================= */
+/* Activity */
+/* ============================= */
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.see-all {
+    color: gray;
+    font-size: 12px;
+}
+
+.activity-card {
+    background: #f3f3f3;
+    padding: 14px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity-left {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.activity-icon {
+    width: 35px;
+    height: 35px;
+    background: #ffe8e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.activity-title {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.activity-sub {
+    font-size: 11px;
+    color: gray;
+}
+
+.activity-time {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* ============================= */
+/* Schedule */
+/* ============================= */
+
+.schedule-content {
+    padding: 20px;
+}
+
+.schedule-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.activity-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.activity-form input {
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+}
+
+.add-btn {
+    padding: 10px;
+    border-radius: 14px;
+    border: none;
+    background: #ff6b5e;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* ============================= */
+/* Chat Page - Proper Layout */
+/* ============================= */
+
+.chat-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;              /* IMPORTANT */
+    min-height: 0;        /* FIXES FLEX SCROLL BUG */
+}
+
+.chat-header {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.maia {
+    color: #ff5c4d;
+}
+
+.chat-messages {
+    flex: 1;
+    min-height: 0;        /* IMPORTANT */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.msg {
+    max-width: 70%;
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 13px;
+}
+
+.msg.user {
+    align-self: flex-end;
+    background: #ff5c4d;
+    color: white;
+}
+
+.msg.bot {
+    align-self: flex-start;
+    background: #f3f3f3;
+}
+
+.chat-input-bar {
+    display: flex;
+    gap: 8px;
+}
+
+.chat-input-bar input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+}
+
+.chat-input-bar button {
+    background: #ff5c4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+}

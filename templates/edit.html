@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Activity</title>
+    <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+</head>
+<body>
+
+<div class="phone">
+    <div class="screen" style="padding:20px;">
+
+        <h3>Edit Activity</h3>
+
+        <form method="POST" class="activity-form">
+            {% csrf_token %}
+            {{ form.title }}
+            {{ form.duration }}
+            {{ form.time }}
+            <button type="submit" class="add-btn">Update</button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

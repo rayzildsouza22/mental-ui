@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Schedule{% endblock %}
+
+{% block content %}
+<div class="schedule-content">
+
+    <h3 class="schedule-title">Your Schedule</h3>
+
+    <!-- Add Activity Form -->
+    <form method="POST" class="activity-form">
+        {% csrf_token %}
+
+        <input type="text"
+               name="title"
+               placeholder="Activity title"
+               required>
+
+        <input type="text"
+               name="duration"
+               placeholder="Duration (e.g. 30 min)"
+               required>
+
+        <input type="time"
+               name="time"
+               required>
+
+        <button type="submit" class="add-btn">Add</button>
+    </form>
+
+    <hr style="margin:15px 0; opacity:0.3;">
+
+    {% for activity in activities %}
+        <div class="schedule-card">
+
+            <div class="schedule-left">
+                <div class="schedule-icon">🧘</div>
+                <div>
+                    <div class="schedule-activity-title">
+                        {{ activity.title }}
+                    </div>
+                    <div class="schedule-sub">
+                        {{ activity.duration }}
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; align-items:center;">
+
+                <div class="schedule-time">
+                    {{ activity.time|time:"H:i" }}
+                </div>
+
+                <!-- Edit -->
+                <a href="{% url 'edit_activity' activity.id %}"
+                   style="color:blue; text-decoration:none; font-size:14px;">
+                    ✏
+                </a>
+
+                <!-- Delete -->
+                <a href="{% url 'delete_activity' activity.id %}"
+                   style="color:red; text-decoration:none; font-size:14px;"
+                   onclick="return confirm('Delete this activity?');">
+                    ✖
+                </a>
+
+            </div>
+
+        </div>
+    {% empty %}
+        <p style="color:gray;">No activities yet.</p>
+    {% endfor %}
+
+</div>
+{% endblock %}

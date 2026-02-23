@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+<div class="chat-content">
+
+    <h4 class="chat-header">
+        Talk with <span class="maia">Maia</span>
+    </h4>
+
+    <div class="chat-messages" id="chatMessages">
+        {% for msg in messages %}
+            {% if msg.is_bot %}
+                <div class="msg bot">
+                    {{ msg.text }}
+                </div>
+            {% else %}
+                <div class="msg user">
+                    {{ msg.text }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <form method="POST" class="chat-input-bar">
+        {% csrf_token %}
+        <input type="text" name="message" placeholder="Type your message..." required>
+        <button type="submit">➤</button>
+    </form>
+
+</div>
+
+<script>
+    var chatBox = document.getElementById("chatMessages");
+    chatBox.scrollTop = chatBox.scrollHeight;
+</script>
+
+{% endblock %}

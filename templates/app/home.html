@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="content">
+
+    <!-- Greeting -->
+    <h3 class="greeting">
+        Good morning, {{ user.username }} 👋
+    </h3>
+
+    <p class="subtitle">
+        How has your day been so far?
+    </p>
+
+    <!-- Mood Card -->
+    <div class="mood-card">
+
+        <div class="mood-title">
+            {% if today_mood %}
+                Today's Mood: {{ today_mood.mood }}
+            {% else %}
+                Select Your Mood
+            {% endif %}
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mood-meter">
+
+                <div class="mood-arc"></div>
+
+                <button type="submit"
+                        name="mood"
+                        value="Angry"
+                        class="mood-emoji angry
+                        {% if today_mood and today_mood.mood == 'Angry' %}active{% endif %}">
+                    😡
+                </button>
+
+                <button type="submit"
+                        name="mood"
+                        value="Sad"
+                        class="mood-emoji sad
+                        {% if today_mood and today_mood.mood == 'Sad' %}active{% endif %}">
+                    😢
+                </button>
+
+                <button type="submit"
+                        name="mood"
+                        value="Calm"
+                        class="mood-emoji calm
+                        {% if today_mood and today_mood.mood == 'Calm' %}active{% endif %}">
+                    😌
+                </button>
+
+                <button type="submit"
+                        name="mood"
+                        value="Happy"
+                        class="mood-emoji happy
+                        {% if today_mood and today_mood.mood == 'Happy' %}active{% endif %}">
+                    😊
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- Next Activity Section -->
+    <div class="activity-header">
+        <span>Next activity</span>
+        <span class="see-all">See All</span>
+    </div>
+
+    {% if next_activity %}
+        <div class="activity-card">
+            <div class="activity-left">
+                <div class="activity-icon">🧘</div>
+                <div>
+                    <div class="activity-title">
+                        {{ next_activity.title }}
+                    </div>
+                    <div class="activity-sub">
+                        {{ next_activity.duration }}
+                    </div>
+                </div>
+            </div>
+            <div class="activity-time">
+                {{ next_activity.time|time:"H:i" }}
+            </div>
+        </div>
+    {% else %}
+        <p style="font-size:13px; color:gray;">
+            No upcoming activities.
+        </p>
+    {% endif %}
+
+</div>
+{% endblock %}

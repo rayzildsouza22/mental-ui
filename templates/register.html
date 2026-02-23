@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+</head>
+<body>
+
+<div class="phone">
+    <div class="screen" style="display:flex; align-items:center; justify-content:center;">
+
+        <form method="POST" style="width:80%;">
+            {% csrf_token %}
+            <h3 style="text-align:center;">Create Account</h3>
+
+            {{ form.as_p }}
+
+            <button type="submit" class="add-btn" style="width:100%;">
+                Register
+            </button>
+
+            <p style="font-size:12px; text-align:center; margin-top:10px;">
+                Already have an account?
+                <a href="{% url 'login' %}">Login</a>
+            </p>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
